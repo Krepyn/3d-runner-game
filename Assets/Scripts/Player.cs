@@ -118,6 +118,7 @@ public class Player : MonoBehaviour
 
     public void NextLevel() {
         currentLevel++;
+        SavePlayerPrefs();
         SceneManager.LoadScene("Level " + currentLevel);
         levelEnd = false;
     }
