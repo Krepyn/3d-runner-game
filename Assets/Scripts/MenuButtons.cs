@@ -28,4 +28,13 @@ public class MenuButtons : MonoBehaviour
         menuPanel.SetActive(false);
         player.GetComponent<Player>().Continue();
     }
+
+    public void OnNextLevel() {
+        player.GetComponent<Player>().NextLevel();
+    }
+
+    public void OnSaveAndExitGame() {
+        player.GetComponent<Player>().SavePlayerPrefs();
+        OnExitGame();
+    }
 }
