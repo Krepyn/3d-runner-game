@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
     private float maxYRot = -70f;
     private float minYRot = -110f;
     private bool isMenuOpen = false;
+    private float horizontalMove;
     // private float currentRotation = -90f;
 
     // Rotation
@@ -61,8 +62,13 @@ public class Player : MonoBehaviour
                 velocity.y = 0f;
 
             // Forward Movement
+            if(joystick.Horizontal > 0f)
+                horizontalMove = 1;
+            else if(joystick.Horizontal < 0f)
+                horizontalMove = -1;
+
             //Vector3 move = new Vector3(-speed, 0, Input.GetAxis("Horizontal"));
-            Vector3 move = new Vector3(-speed, 0, joystick.Horizontal);
+            Vector3 move = new Vector3(-speed, 0, horizontalMove);
             controller.Move(move * Time.deltaTime * speed);
 
             // Jump
@@ -75,7 +81,7 @@ public class Player : MonoBehaviour
 
             // Rotation
             //transform.Rotate(0, Input.GetAxis("Horizontal"), 0);
-            transform.Rotate(0, joystick.Horizontal, 0);
+            transform.Rotate(0, horizontalMove, 0);
             LimitRotation();
 
             // Rotate Back to forward position
