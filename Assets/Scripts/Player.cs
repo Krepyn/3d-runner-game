@@ -28,11 +28,14 @@ public class Player : MonoBehaviour
     private Vector3 velocity;
     private float maxYRot = -70f;
     private float minYRot = -110f;
-    private bool isMenuOpen = false;
-    private bool isLevelStart = true;
-    private bool levelEnd = false;
     private float horizontalMove;
     // private float currentRotation = -90f;
+
+    // Checks
+    public static bool isLevelStart = true;
+
+    private bool isMenuOpen = false;
+    private bool levelEnd = false;
 
     // Rotation
     public float rotationSpeed = 5f;
