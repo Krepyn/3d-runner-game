@@ -5,13 +5,16 @@ using UnityEngine;
 public class MenuButtons : MonoBehaviour
 {
     public GameObject menuPanel;
+    public GameObject settingsPanel;
     public GameObject player;
 
-    public void OnSaveGame() {
+
+    // Menu Pane
+    public void OnMenuSaveGame() {
 
     }
 
-    public void OnExitGame() {
+    public void OnMenuExitGame() {
         #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
         #else
@@ -29,12 +32,29 @@ public class MenuButtons : MonoBehaviour
         player.GetComponent<Player>().Continue();
     }
 
+    public void OnMenuSettingsButton() {
+        settingsPanel.SetActive(true);
+        menuPanel.SetActive(false);
+    }
+
+    // Settings Pane
+    public void OnSettingsExitButton() {
+        settingsPanel.SetActive(false);
+        player.GetComponent<Player>().Continue();
+    }
+
+    public void OnSettingsBackButton() {
+        menuPanel.SetActive(true);
+        settingsPanel.SetActive(false);
+    }
+
+    // Level End Pane
     public void OnNextLevel() {
         player.GetComponent<Player>().NextLevel();
     }
 
     public void OnSaveAndExitGame() {
         player.GetComponent<Player>().SavePlayerPrefs();
-        OnExitGame();
+        OnMenuExitGame();
     }
 }

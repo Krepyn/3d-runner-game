@@ -28,7 +28,8 @@ public class Player : MonoBehaviour
     private Vector3 velocity;
     private float maxYRot = -70f;
     private float minYRot = -110f;
-    private bool isMenuOpen = true;
+    private bool isMenuOpen = false;
+    private bool isLevelStart = true;
     private bool levelEnd = false;
     private float horizontalMove;
     // private float currentRotation = -90f;
@@ -57,7 +58,7 @@ public class Player : MonoBehaviour
     }
 
     private void PlayerMovement() {
-        if(!levelEnd){
+        if(!levelEnd && !isLevelStart){
             if(!isMenuOpen){
                 playerOnGround = controller.isGrounded;
                 if (playerOnGround && velocity.y < 0)
@@ -87,11 +88,12 @@ public class Player : MonoBehaviour
                     Quaternion target = Quaternion.Euler(0f, -90f, 0f);
                     playerTransform.rotation = Quaternion.Slerp(playerTransform.rotation, target, rotationSpeed * Time.deltaTime);
                 }
-            } else {
-                if(joystick.Horizontal != 0f){
-                    isMenuOpen = false;
-                    GetComponent<Animator>().enabled = true;
-                }
+            }
+        } else {
+            if(joystick.Horizontal != 0f){
+                Debug.Log("Start Level");
+                isLevelStart = false;
+                GetComponent<Animator>().enabled = true;
             }
         }
     }
@@ -143,7 +145,9 @@ public class Player : MonoBehaviour
 
     public void Continue() {
         isMenuOpen = false;
-        GetComponent<Animator>().enabled = true;
+        if(!levelEnd && !isLevelStart)
+                GetComponent<Animator>().enabled = true;
+
     }
 
     public void SavePlayerPrefs() {
