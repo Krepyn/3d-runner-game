@@ -1,21 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
     // Stats
     public int maxHealth = 3;
-    public int health = 3;
-    public int coins = 0;
-    public int currentLevel = 1;
-
-    // UI
-    public GameObject coinText;
-    public GameObject healthText;
-    public GameObject levelText;
+    public static int health = 3;
+    public static int coins = 0;
+    public static int currentLevel = 1;
 
     // Movement
     public CharacterController controller;
@@ -54,13 +48,6 @@ public class Player : MonoBehaviour
         if(health == 0)
             Die();
         PlayerMovement();
-        UIUpdate();
-    }
-
-    private void UIUpdate(){
-        // Coin Text
-        coinText.GetComponent<Text>().text = coins + "";
-        healthText.GetComponent<Text>().text = health + "";
     }
 
     private void PlayerMovement() {
