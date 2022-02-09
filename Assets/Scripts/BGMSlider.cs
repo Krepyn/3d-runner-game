@@ -34,7 +34,8 @@ public class BGMSlider : MonoBehaviour
         else
             audioVolume = 0f;
 
-        GameObject.FindGameObjectWithTag("bgm").GetComponent<AudioSource>().volume = audioVolume;
+        if(GameObject.FindGameObjectsWithTag("bgm").Length > 0)
+            GameObject.FindGameObjectWithTag("bgm").GetComponent<AudioSource>().volume = audioVolume;
 
         PlayerPrefs.SetFloat("Volume", audioVolume);
         PlayerPrefs.Save();

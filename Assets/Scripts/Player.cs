@@ -42,6 +42,9 @@ public class Player : MonoBehaviour
 
     void Start() {
         playerTransform = GetComponent<Transform>();
+
+        if(MainMenuButtons.loadGame)
+            LoadPlayerPrefs();
     }
 
     void Update() {
@@ -155,6 +158,12 @@ public class Player : MonoBehaviour
         PlayerPrefs.SetInt("Coins", coins);
         PlayerPrefs.SetInt("CurrentLevel", currentLevel);
         PlayerPrefs.Save();
+    }
+
+    public void LoadPlayerPrefs() {
+        health = PlayerPrefs.GetInt("Health");
+        coins = PlayerPrefs.GetInt("Coins");
+        currentLevel = PlayerPrefs.GetInt("CurrentLevel");
     }
 
     // public void LeftTurn() {
