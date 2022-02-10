@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     public static int health = 3;
     public static int coins = 0;
     public static int currentLevel = 1;
+    public static int maxLevel = 3;
 
     // Movement
     public CharacterController controller;
@@ -116,7 +117,7 @@ public class Player : MonoBehaviour
     public void NextLevel() {
         currentLevel++;
         SavePlayerPrefs();
-        SceneManager.LoadScene("Level " + currentLevel);
+        SceneManager.LoadScene(currentLevel);
         levelEnd = false;
     }
 
@@ -142,7 +143,6 @@ public class Player : MonoBehaviour
         isMenuOpen = false;
         if(!levelEnd && !isLevelStart)
                 GetComponent<Animator>().enabled = true;
-
     }
 
     public void SavePlayerPrefs() {

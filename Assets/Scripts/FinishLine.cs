@@ -5,12 +5,22 @@ using UnityEngine.UI;
 
 public class FinishLine : MonoBehaviour
 {
-    public GameObject player;
     public GameObject levelEndPanel;
+    public GameObject gameEndPanel;
+
+    private GameObject player;
 
     private void OnTriggerEnter(Collider c){
-        Debug.Log("Level end.");
-        levelEndPanel.SetActive(true);
-        StartCoroutine(player.GetComponent<Player>().LevelEnd());
+        if(c.gameObject.tag == "Player"){
+            player = c.gameObject;
+            Debug.Log("Level end.");
+
+            if(Player.currentLevel < Player.maxLevel){
+                levelEndPanel.SetActive(true);
+            } else
+                gameEndPanel.SetActive(true);
+
+            StartCoroutine(player.GetComponent<Player>().LevelEnd());
+        }
     }
 }
