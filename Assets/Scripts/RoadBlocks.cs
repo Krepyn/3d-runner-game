@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class RoadBlocks : MonoBehaviour
 {
-    public GameObject player;
     public GameObject roadBlock;
     public GameObject roadBlockSplit;
 
@@ -12,14 +11,12 @@ public class RoadBlocks : MonoBehaviour
     public float maxForce = 125f;
     public float radius = 2f;
 
-    public void Col() {
-        Debug.Log("Collision started.");
-
+    public void Col(GameObject player) {        
         player.GetComponent<Player>().GetHit();
+
         roadBlock.SetActive(false);
         roadBlockSplit.SetActive(true);
         StartCoroutine(Explode());
-
     }
 
     public IEnumerator Explode() {
