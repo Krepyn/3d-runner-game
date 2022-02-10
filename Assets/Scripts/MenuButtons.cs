@@ -8,11 +8,9 @@ public class MenuButtons : MonoBehaviour
     public GameObject settingsPanel;
     public GameObject player;
 
+    public static bool nextLevel = false;
 
     // Menu Pane
-    public void OnMenuSaveGame() {
-
-    }
 
     public void OnMenuExitGame() {
         #if UNITY_EDITOR
@@ -51,6 +49,7 @@ public class MenuButtons : MonoBehaviour
     // Level End Pane
     public void OnNextLevel() {
         player.GetComponent<Player>().NextLevel();
+        nextLevel = true;
     }
 
     public void OnSaveAndExitGame() {

@@ -39,8 +39,9 @@ public class Player : MonoBehaviour
 
     void Start() {
         playerTransform = GetComponent<Transform>();
+        isLevelStart = true;
 
-        if(MainMenuButtons.loadGame)
+        if(MainMenuButtons.loadGame || MenuButtons.nextLevel)
             LoadPlayerPrefs();
     }
 
@@ -101,7 +102,8 @@ public class Player : MonoBehaviour
     }
 
     private void Die() {
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene(currentLevel);
+        LoadPlayerPrefs();
     }
 
     // Public functions

@@ -16,10 +16,9 @@ public class AutoUI : MonoBehaviour
         UIUpdate();
     }
 
-    // Update is called once per frame
     void Update()
     {
-
+        UIUpdate();
     }
 
     private void UIUpdate() {
@@ -33,6 +32,5 @@ public class AutoUI : MonoBehaviour
         for(int i = 0; i < Player.health; i++){
             Object.Instantiate(health, healthParent.transform);
         }
-
     }
 }
