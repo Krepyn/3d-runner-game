@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class Coins : MonoBehaviour
 {
-    public GameObject player;
-
+    private GameObject player;
     public int amount = 1;
 
     private void OnTriggerEnter(Collider c){
-        Debug.Log("Player picked up a coin.");
-        player.GetComponent<Player>().CoinPickup(amount);
-        Destroy(this.gameObject);
+        if(c.gameObject.tag == "Player"){
+            player = c.gameObject;
+            Debug.Log("Player picked up a coin.");
+            player.GetComponent<Player>().CoinPickup(amount);
+            Destroy(this.gameObject);
+        }
     }
 }
