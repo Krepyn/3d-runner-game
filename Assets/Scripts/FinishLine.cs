@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class FinishLine : MonoBehaviour
 {
+    public GameObject UIHandler;
     public GameObject levelEndPanel;
     public GameObject gameEndPanel;
 
@@ -15,11 +16,7 @@ public class FinishLine : MonoBehaviour
             player = c.gameObject;
             Debug.Log("Level end.");
 
-            if(Player.currentLevel < Player.maxLevel){
-                levelEndPanel.SetActive(true);
-            } else
-                gameEndPanel.SetActive(true);
-
+            UIHandler.GetComponent<levelEnd>().End();
             StartCoroutine(player.GetComponent<Player>().LevelEnd());
         }
     }

@@ -11,6 +11,10 @@ public class Player : MonoBehaviour
     public static int coins = 0;
     public static int currentLevel = 1;
     public static int maxLevel = 3;
+    public static int totalScore = 0;
+
+    public static int coinsCollectedThisLevel = 0;
+    public static int healthThisLevel = 0;
 
     // Movement
     public CharacterController controller;
@@ -66,10 +70,6 @@ public class Player : MonoBehaviour
                 Vector3 move = new Vector3(-speed, 0, horizontalMove);
                 controller.Move(move * Time.deltaTime * speed);
 
-                // Jump
-                // if(Input.GetButtonDown("Jump") && playerOnGround)
-                //     velocity.y += Mathf.Sqrt(jump * -3f * gravity);
-
                 // Gravity
                 velocity.y += gravity * Time.deltaTime;
                 controller.Move(velocity * Time.deltaTime);
@@ -86,7 +86,7 @@ public class Player : MonoBehaviour
             }
         } else {
             if(joystick.Horizontal != 0f){
-                Debug.Log("Start Level");
+                Debug.Log("Start Level " + currentLevel);
                 isLevelStart = false;
                 GetComponent<Animator>().enabled = true;
             }
@@ -104,6 +104,8 @@ public class Player : MonoBehaviour
 
     private void Die() {
         SceneManager.LoadScene(currentLevel);
+        coinsCollectedThisLevel = 0;
+        healthThisLevel = 0;
         LoadPlayerPrefs();
     }
 
@@ -111,6 +113,8 @@ public class Player : MonoBehaviour
     public IEnumerator LevelEnd() {
         yield return new WaitForSeconds(1);
         levelEnd = true;
+        coinsCollectedThisLevel = 0;
+        healthThisLevel = 0;
         GetComponent<Animator>().enabled = false;
     }
 
@@ -123,15 +127,19 @@ public class Player : MonoBehaviour
 
     public void CoinPickup(int amount) {
         coins += amount;
+        coinsCollectedThisLevel += amount;
     }
 
     public void HealthPickup() {
-        if(health < maxHealth)
+        if(health < maxHealth) {
             health++;
+            healthThisLevel++;
+        }
     }
 
     public void GetHit(){
         health--;
+        healthThisLevel--;
     }
 
     public void Stop() {
@@ -149,6 +157,7 @@ public class Player : MonoBehaviour
         PlayerPrefs.SetInt("Health", health);
         PlayerPrefs.SetInt("Coins", coins);
         PlayerPrefs.SetInt("CurrentLevel", currentLevel);
+        PlayerPrefs.SetInt("TotalScore", totalScore);
         PlayerPrefs.Save();
     }
 
@@ -156,6 +165,7 @@ public class Player : MonoBehaviour
         health = PlayerPrefs.GetInt("Health");
         coins = PlayerPrefs.GetInt("Coins");
         currentLevel = PlayerPrefs.GetInt("CurrentLevel");
+        totalScore = PlayerPrefs.GetInt("TotalScore");
     }
 
     // public void LeftTurn() {

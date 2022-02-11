@@ -10,7 +10,8 @@ public class Heart : MonoBehaviour
     private void OnTriggerEnter(Collider c){
         if(c.gameObject.tag == "Player"){
             player = c.gameObject;
-            Debug.Log("Player picked up a heart.");
+            
+            //Debug.Log("Player picked up a heart.");
             player.GetComponent<Player>().HealthPickup();
             Destroy(this.gameObject);
         }

@@ -2518,6 +2518,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f77a5e97c103cc4c95cd18d6fc7852d, type: 3}
+--- !u!1 &1457714601 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8783858794827462985, guid: bd3e2e1b633016f4684e8d24710c6f75,
+    type: 3}
+  m_PrefabInstance: {fileID: 4593224460211299544}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1466385822
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4722,6 +4728,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2719119312707600564, guid: 1075bb9af0235cb4b89a348560aadaa8,
+        type: 3}
+      propertyPath: UIHandler
+      value: 
+      objectReference: {fileID: 1457714601}
     - target: {fileID: 2719119312707600564, guid: 1075bb9af0235cb4b89a348560aadaa8,
         type: 3}
       propertyPath: gameEndPanel

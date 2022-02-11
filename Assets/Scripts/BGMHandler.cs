@@ -11,10 +11,10 @@ public class BGMHandler : MonoBehaviour
     void Awake()
     {
         if(GameObject.FindGameObjectsWithTag("bgm").Length > 1){
-            Debug.Log("Found old bgm object.");
+            //Debug.Log("Found old bgm object.");
             Destroy(currentBGM);
         } else {
-            Debug.Log("Music played.");
+            //Debug.Log("Music played.");
 
             audioVolume = PlayerPrefs.GetFloat("Volume", -1);
             if(audioVolume != -1)
