@@ -14,8 +14,8 @@ public class FinishLine : MonoBehaviour
     private void OnTriggerEnter(Collider c){
         if(c.gameObject.tag == "Player"){
             player = c.gameObject;
-            Debug.Log("Level end.");
 
+            Debug.Log("Level end.");
             UIHandler.GetComponent<levelEnd>().End();
             StartCoroutine(player.GetComponent<Player>().LevelEnd());
         }

@@ -56,4 +56,10 @@ public class MenuButtons : MonoBehaviour
         player.GetComponent<Player>().SavePlayerPrefs();
         OnMenuExitGame();
     }
+
+    // Game Over Pane
+    public void OnRestartGame() {
+        player.GetComponent<Player>().RestartGame();
+    }
+
 }

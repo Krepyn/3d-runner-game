@@ -12,9 +12,10 @@ public class Player : MonoBehaviour
     public static int currentLevel = 1;
     public static int maxLevel = 3;
     public static int totalScore = 0;
-
     public static int coinsCollectedThisLevel = 0;
     public static int healthThisLevel = 0;
+
+    public GameObject UIHandler;
 
     // Movement
     public CharacterController controller;
@@ -51,7 +52,7 @@ public class Player : MonoBehaviour
     }
 
     void Update() {
-        if(health == 0)
+        if(health == 0 && !isMenuOpen)
             Die();
         PlayerMovement();
     }
@@ -102,11 +103,15 @@ public class Player : MonoBehaviour
         playerTransform.rotation = Quaternion.Euler(playerEulerAngles);
     }
 
-    private void Die() {
-        SceneManager.LoadScene(currentLevel);
-        coinsCollectedThisLevel = 0;
-        healthThisLevel = 0;
-        LoadPlayerPrefs();
+    public void Die() {
+        isMenuOpen = true;
+        GetComponent<Animator>().enabled = false;
+        UIHandler.GetComponent<GameOver>().gOver();
+    }
+
+    public void RestartGame() {
+        PlayerPrefs.DeleteAll();
+        SceneManager.LoadScene(0);
     }
 
     // Public functions
