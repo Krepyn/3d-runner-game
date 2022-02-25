@@ -9,13 +9,13 @@ public class Coins : MonoBehaviour
     public int maxAmount = 50;
 
     private void Start() {
-        amount = (int)Random.Range(1, 50);
+        amount = (int)Random.Range(1, maxAmount);
     }
 
     private void OnTriggerEnter(Collider c){
         if(c.gameObject.tag == "Player"){
             player = c.gameObject;
-            
+
             //Debug.Log("Player picked up a coin.");
             player.GetComponent<Player>().CoinPickup(amount);
             Destroy(this.gameObject);
