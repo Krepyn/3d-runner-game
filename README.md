@@ -13,4 +13,6 @@ All the other assets have been made by me.
 Click screenshots for original sizes.<br>
 <p float="left">
     <img width="180" height="320" src="Screenshots/1.png?raw=true">
+    <img width="180" height="320" src="Screenshots/2.png?raw=true">
+    <img width="180" height="320" src="Screenshots/3.png?raw=true">
 </p>
