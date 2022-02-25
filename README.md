@@ -1,5 +1,5 @@
 ## About
- A 3D hypercasual runner game prototype as a challenge to myself.
+ A 3D hypercasual runner prototype, made as a challenge to myself.
  
  Used;
    * <a href="https://assetstore.unity.com/packages/2d/textures-materials/sky/farland-skies-cloudy-crown-60004">Farland Skies - Cloudy Crown by Borodar</a>,
